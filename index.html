@@ -377,7 +377,7 @@
     <div id="final-gift-container" class="hidden" style="position: relative; z-index: 20; display:flex; flex-direction:column; align-items:center;">
         <h1 class="valentine-heading">Will you be my Valentine? 🌹</h1>
         <div class="spotify-card">
-            <img id="spotify-img" class="spotify-img" src="IMG_20260212_184150_434.jpg">
+            <img id="spotify-img" class="spotify-img" src="IMG_20260212_184150_434.jpg" onerror="this.style.display='none'">
             <div class="song-info">
                 <h2 id="song-title">Door hoke bhi humesha paas ho mere tum 🥹</h2>
                 <p id="artist-name">Danish & ...... ❤️</p>
@@ -539,7 +539,7 @@
             }, 4000);
         }
 
-        // --- NEW: SMOOTH SLIDESHOW LOGIC ---
+        // --- NEW: ROBUST SLIDESHOW LOGIC ---
         const slideshowImages = [
             "IMG_20260212_184150_434.jpg",
             "IMG_20260212_172728_833.jpg",
@@ -552,16 +552,38 @@
         function startSpotifySlideshow() {
             const imgElement = document.getElementById('spotify-img');
             
-            // The interval is now 3s: 2.5s viewing time + 0.5s transition
+            // 1. PRELOAD IMAGES to prevent black flashes or broken icons during swap
+            slideshowImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+
+            // 2. Add error handler to the main image element dynamically
+            imgElement.onerror = function() {
+                console.log("Image failed to load: " + this.src);
+                this.style.display = 'none'; // Hide if broken
+            };
+            imgElement.onload = function() {
+                this.style.display = 'block'; // Show when loaded
+            };
+            
+            // 3. Start Loop
             setInterval(() => {
-                // 1. Fade OUT
+                // Fade OUT
                 imgElement.classList.add('fade-out');
 
-                // 2. Wait 500ms for fade out to complete, then swap image and Fade IN
+                // Wait 500ms for fade, then swap
                 setTimeout(() => {
                     currentSlideIndex = (currentSlideIndex + 1) % slideshowImages.length;
                     imgElement.src = slideshowImages[currentSlideIndex];
-                    imgElement.classList.remove('fade-out');
+                    
+                    // Give browser a split second to register the new src before fading in
+                    imgElement.onload = () => {
+                        imgElement.classList.remove('fade-out');
+                    };
+                    // Fallback just in case onload doesn't fire fast enough
+                    setTimeout(() => { imgElement.classList.remove('fade-out'); }, 100);
+                    
                 }, 500); 
 
             }, 3000);

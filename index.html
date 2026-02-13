@@ -121,7 +121,7 @@
             color: #d57eeb; 
             font-family: 'Pacifico', cursive; 
             font-size: 0.8rem; 
-            font-weight: 400;
+            font-weight: 400; 
             line-height: 1.2; 
             padding: 8px 10px; 
             border-radius: 10px; 
@@ -283,8 +283,8 @@
     <div class="container" id="main-container">
         
         <div id="login-screen" class="lock-stack">
-            <h2>Who is my Little gundi😗?</h2>
-            <p class="hint-text">(Hint: Her name starts from D)</p>
+            <h2>Who is my Little sweetu😗?</h2>
+            <p class="hint-text">(Hint: Her name starts from S)</p>
             <div id="lock1" class="lock-graphic">
                 <div class="shackle"></div>
                 <div class="heart-body"><div class="keyhole"></div></div>
@@ -299,10 +299,12 @@
                 <div class="roller"></div>
                 <div class="seal">❤️</div>
                 <div id="scroll-paper">
-                    <div style="margin-top: 30px;">
+                    <div style="margin-top: 30px; font-size: 20px;">
                         My Dearest,<br><br>
-                        My darling apke liye ye chotu sa surprise banaya hai 🙃<br>
-                        I LOVE YOU SO MUCH Darling !!
+                      My lovely little cutie, I love you so much and I miss you a lot, my baby girl. I wanna send you something this valentine but you know i cant send it. So my princess this is for you.. 
+
+And also When I come back, I’ll have something special for you, my dear bubu.
+I ll come to see you very soon and hold your hands meri pretty little baby.
                     </div>
                     <p style="font-family: 'Quicksand', sans-serif; font-size: 0.8rem; margin-top: 40px; color: #999; text-transform: uppercase; letter-spacing: 2px;">
                         Click to continue
@@ -339,7 +341,7 @@
                     <div class="balloon b3" onclick="popBalloon(this, 'card3')"></div>
                     <div id="card3" class="memory-card">
                         <img class="photo-reveal" src="IMG_20260212_184121_045.jpg">
-                        <div class="memory-note">Ap darate bhi to dar lgta nhi apke akho me kho jata hu harpal 🫠</div>
+                        <div class="memory-note">Apki aankhe itni pyaari ha ki me apki aankhe dekh ke hi kho jata hu</div>
                     </div>
                 </div>
             </div>
@@ -360,7 +362,7 @@
                         My world is a beautiful art,<br>
                         Simply because of you.<br>
                         You are my joy, my endless love.<br>
-                        I lobh uuu, my pupu darling !!!"<br><br>
+                        I lobh uuu, meri pyari bubu !!!"<br><br>
                         <button class="action-btn" style="padding: 5px 15px; font-size: 0.8rem;" onclick="triggerFinale(event)">Forever & Always ❤️</button>
                     </div>
                 </div>
@@ -372,7 +374,7 @@
 
     </div>
 
-    <div id="transition-text">After this a final gift for you madam....</div>
+    <div id="transition-text">After this a final gift for you bubu....</div>
     
     <div id="final-gift-container" class="hidden" style="position: relative; z-index: 20; display:flex; flex-direction:column; align-items:center;">
         <h1 class="valentine-heading">Will you be my Valentine? 🌹</h1>
@@ -380,7 +382,7 @@
             <img id="spotify-img" class="spotify-img" src="IMG_20260212_184150_434.jpg" onerror="this.style.display='none'">
             <div class="song-info">
                 <h2 id="song-title">Door hoke bhi humesha paas ho mere tum 🥹</h2>
-                <p id="artist-name">Danish & ...... ❤️</p>
+                <p id="artist-name">Danish & Suparna ❤️</p>
             </div>
             <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
             <div style="display:flex; justify-content:center;">
@@ -393,7 +395,7 @@
     <div id="gun" class="realistic-gun hidden"><div class="gun-scope metal"></div><div class="gun-barrel-long metal"></div><div class="gun-body metal"></div></div>
 
     <script>
-        const MAIN_PASSWORD = "deboleena"; 
+        const MAIN_PASSWORD = "Suparna"; 
         let balloonsPopped = 0;
 
         function createHearts() {
@@ -413,7 +415,8 @@
 
         // Lock
         function checkPassword() {
-            if (document.getElementById('passwordInput').value.toLowerCase() === MAIN_PASSWORD) {
+            // Updated to be case-insensitive so "Suparna", "suparna" or "SUPARNA" all work
+            if (document.getElementById('passwordInput').value.trim().toLowerCase() === MAIN_PASSWORD.toLowerCase()) {
                 document.getElementById('lock1').classList.add('unlocked');
                 setTimeout(() => {
                     document.getElementById('login-screen').classList.add('hidden');
